@@ -1,0 +1,75 @@
+\subsection{What makes a good target?}
+
+An important note is to make a clear distinction between prediction and inference, correlation and causality: while \textbf{prediction} attempts to answer the question ``which are good targets?'', \textbf{inference} answers ``what makes a good target?''.
+
+\begin{center}
+\emph{``The best way to discover a new drug is to start with an old one''}
+\end{center}
+\rightline{--- Sir James Whyte Black OM FRS FRSE FRCP}
+\medskip
+
+Despite the efforts of several databases to provide an exhaustive data collection on drug--targets (see Table \ref{tab:target_db_stats}, it is still a challenge to retrieve a consistent and comprehensive view of the targets of approved drugs (both small molecules and biologics) with their associated molecular efficacy targets (human and pathogen) organised by therapeutical use \cite{santos2016}. 
+
+In the setting of a full drug discovery project, the route to validation and clinical testing can essentially be reduced to a series of questions according to \cite{brown2018}. I will collect them all in the following list:
+\begin{itemize}
+    \item What is the target role in the disease?
+    \item In which organ it acts? Where the target is expressed? Extracellular membrane will be ideal
+    
+    \item Which are the risks that the modulation of one target could bring as the clinical programme advances?
+    
+    \item Does the target appear in a disease--relevant pathway?
+    
+    \item Is there supporting evidence for the hypothesis from pharmacology?
+    
+    \item Will animal models information translate to humans? Are there human orthologs? See this \href{https://www.youtube.com/watch?v=BK04TZbO-HY}{seminar} from Dr Melissa Haendel
+    
+    \item Is there evidence of causation, or ability to stratify patients?
+    
+    \item What is the current therapy or standard care in the disease? Is there already an effective treatment, an unmet clinical need? Is it worth developing new drugs \cite{freudenberg2018, finan2017}? 
+    
+    \item What is the disease prevalence \cite{freudenberg2018}? What is the specificity of the target for a single disease? Is the target pleiotropic, involved in several diseases? Is the target the core of a complex regulation pathway?
+    
+    \item What is the competitive landscape?
+    \item How strong are all the evidences?
+    \item How drug effects on targets are propagated though their corresponding pathways?
+    \item 
+    \textbf{Why every attempt \cite{brown2018,DISEASES2015,DisGeNET2015,ctd2017} considers the GDAs as individual, isolated associations and not part of a pathway, an ontology, a signal cascade with interconnected nodes in a network?}
+     If \texttt{gene1} is associated to \texttt{disease1} and \texttt{gene2} is associated to \texttt{gene1}, why just considering the pair \texttt{gene1-disease1} and not a transmission of the triple association \texttt{disease1-gene1-gene 2}? Open Targets has already done something similar by combining GPCR and endogenous ligand disease association evidences \cite{freudenberg2018} based on the publication \cite{southan2016}. For example, genetic evidence for a disease association with an endogenous ligand may exist but the corresponding GPCR may turn out to be the better drug target due to druggability \cite{freudenberg2018}.
+    
+    \item What is the druggability of the target \cite{freudenberg2018, finan2017}? Unanswered by Open Targets
+
+\end{itemize}
+
+\subsection{Reproducibility}
+Reproducibility by publishing the code base, full details of data sets and data methods, and peer scrutiny of code as part of the publication process \cite{brown2018}.
+
+\subsection{Feature engineering}
+
+Feature engineering is the process of using domain knowledge to create or develop variables that make ML algorithms to work. The performance of an ML algorithm hinges on its ability to extract information from data. The ultimate aim is to select the most discriminative and information rich features. What data publicly available in the databases could help to accurately predict putative targets?
+Deep learning methods perform well when faced with large data sets, when the algorithm can do its own feature engineering by learning latent representations of the input data \cite{brown2018}.
+
+Over the last decade, \textbf{deep learning} has achieved shown superior performance to other machine learning algorithms in image and voice recognition, natural language processing (NLP), social network filtering, board game programs, and bioinformatics, where they produces results comparable and even superior to human experts \cite{chenDL2018}. Concretely, in drug discovery, deep learning has been used for bioactivity prediction, \emph{de novo} molecular design, systhesis prediction, and biological image analysis \cite{chenDL2018}. Nonetheless, it has not been used coupled with NLP for target prioritisation.
+
+\subsection{Alternatives to (un)supervised learning}
+An important limitation in putative target prediction is the labelling of the genes and the information extraction from biomedical literature \cite{brown2018}. It is extremely difficult to assign one label to putative gene, often prohibitively costly or simply impossible for traditional supervised learning \cite{brown2018}.
+
+\subsubsection{Reinforcement learning}
+Reinforcement learning (RL) sits somewhere in between supervised and unsupervised learning. RL operates in a context where supervisory labels are replaced with a system of evaluative feedback. The machine, or agent, is provided with a set of positive and negative cues (i.e. rewards and punishments) in response to a set of actions it takes in an environment; it is told about the consequences of its actions, not if the actions taken were optimal, or what the optimal alternatives were. It then uses that feedback to improve its decision-making abilities. It may be a solution to the problem of labelling.
+
+\subsubsection{Semi-supervised learning}
+Semi-supervised learning is a mix of supervised and unsupervised learning to handle partially labelled data sets.
+
+\subsubsection{Active learning}
+Active learning is a semi-supervised technique where the algorithm ‘chooses’ the data from which it learns, reducing the burden on the human annotator \cite{brown2018}. It was first trialled in board games and made famous by the AlphaGo program from Google where the algorithm is able to select what move to play next based on previous experience. This same technique could be applied to target prioritisation by preventing cognitive bias towards a set of molecules, for less objective reasons \cite{brown2018}.
+\begin{itemize}
+    \item First, the model is trained on all available data
+    \item Predictions are generated based on a given molecular database
+    \item The next set of compounds selected to test based on parameters such as the probability of predictions for areas of the given chemical space??
+    \item Once more data is retrieved from experiments, the model is retrained and updated. The model learns new data points with the objective of increasing its accuracy and generalisability.
+\end{itemize}
+
+Revise this since I have no idea about active learning!!!
+
+
+\subsubsection{Distant supervision learning}
+Distant supervision is a method by which a data set is labelled automatically by following a set of heuristics.

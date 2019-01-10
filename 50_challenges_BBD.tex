@@ -1,0 +1,159 @@
+To fully comprehend the impact that Big Biological Data (BBD) can have on drug discovery, we first have to attempt to define what is meant by Big Data -- even though there is no formal definition to distinguish it from Data.
+
+\begin{center}
+\emph{``Big Data is data that, as a result of its volume or complexity, requires technological or infrastructural investment in order to gain meaningful insights''}
+\end{center}
+
+\subsection{Diversity of BBD}
+
+The bioscience and healthcare communities have created enormous volumes of data from multiple domains: biology, chemistry, safety, translational medicine, genetics, genomics, transcriptomics, proteomics, epigenetics, multispecies variation, etc. Much of this data is publicly available to explore and comprehend the mechanisms underlying the cause of disease states and prevent or treat such conditions \cite{brown2018}. Table \ref{tab:OpenSourceBBC} provides an overview of some interesting publicly available resources.
+
+\begin{table}[ht]
+\centering
+\resizebox{\textwidth}{!}{
+\begin{tabular}{c|c}
+        Data source & Description \\
+        \hline
+        
+        \href{https://goo.gl/A6pjru}{Reactome} & Intermediary metabolism, signalling, apoptosis, and disease pathways \cite{reactome2018} \\
+        
+        \href{https://goo.gl/WqQYPf}{PhenoDigm} & Evidence about GDAs between animal models and human diseases \cite{PhenoDigm2013} \\
+        
+        \href{https://goo.gl/GvE4B1}{GWASC} & SNP-trait associations from GWAS \cite{gwasCatalog2017} \\
+        
+        \href{https://goo.gl/7kzfmr}{EVA} & Genetic or somatic mutations from all species \\
+        
+        \href{https://goo.gl/XtufGc}{UniProt} & Protein sequence and functional information from curated literature \cite{uniprot2017} \\
+        
+        \href{https://goo.gl/J6iKNy}{G2P} & GWAS data for genetic diagnosis of developmental disorders \cite{gene2phenotype2015} \\
+        
+        \href{https://goo.gl/mDrDBG}{CGC} & Somatic and germline mutations via individual cancer hallmarks \cite{cancerGeneCensus2015} \\
+        
+        \href{https://goo.gl/adccid}{IntOGen} & Cancer driver somatic mutations, genes and pathways across tumour types \cite{intOGen2015} \\
+        
+        \href{https://goo.gl/XxQSBe}{ChEMBL} & Curated chemical database of bioactive molecules with drug-like properties \cite{chembl2014} \\
+        
+        \href{https://goo.gl/yGGAvk}{SureChEMBL} & A chemically annotated patent database \cite{surechembl2016} \\
+        
+        \href{https://goo.gl/XH1sE7}{ePMC} & Literature repository with articles, books, patents, and clinical guidelines \cite{europePMC2015} \\
+        
+        \href{https://goo.gl/FTmYcn}{GXA} & RNA expression in all species, tissues, cell types, and diseases \cite{GeneExpressionAtlas2016} \\
+        
+        \href{https://goo.gl/nj2tzs}{ClinVar} & A public archive of relationships between human variants and diseases \cite{clinvar2016} \\
+        
+        \href{https://goo.gl/hUkKLf}{Orphanet} & A portal on rare disorders, their genes, and orphan drugs \cite{orphanet2012} \\
+        
+        \href{https://goo.gl/zc52JW}{RGD} & A repository for the genetic, genomic and phenotypic data of the laboratory rat \cite{rgd2015} \\
+        
+        \href{https://goo.gl/iTNmRx}{MGD} & Integrated genomic, genetic, biological, and disease data of the laboratory mouse \cite{mgd2015} \\
+        
+        \href{https://goo.gl/y3keCN}{GAD} & An archive of genetic association studies \cite{gad2004} Currently retired since 09/01/2014 \\
+        
+        \href{https://goo.gl/hUkKLf}{Orphanet} & A portal on rare disorders, their genes, and orphan drugs \cite{orphanet2012} \\
+        
+        \href{https://goo.gl/mgFWK4}{PsyGeNET} & Resource for the exploratory analysis of psychiatric GDAs \cite{PsyGeNET2015} \\
+        
+        \href{https://goo.gl/gYHKF3}{HPO} & Vocabulary of human disease and their mappings to genes \cite{humanPhenotypeOntology2014} \\
+        
+        \href{https://goo.gl/szDDw6}{LHGDN} & Text mining and ML derived database for semantic GDAs \cite{bundschus2008} \\
+        
+        \href{https://goo.gl/4Yau27}{BeFree} & Biomedical Named Entity Recogniser (BioNER) to extract GDAs \cite{bravo2015} \\
+        
+        \href{http://www.cbioportal.org/data_sets.jsp}{cBioPortal} & Cancer somatic mutations and altered gene expressions
+        
+        \href{http://www.hgmd.cf.ac.uk/ac/index.php}{HGMD} &
+        All published gene lesions related to human inherited diseases
+    
+      \end{tabular}
+      }
+\caption{Overview of publicly available databases with BBC \label{tab:OpenSourceBBC}}
+\end{table}
+
+Nevertheless, the aim of this project is \textbf{NOT} to \emph{develop a database that integrates all publicly available BBD resources} but to utilise all available resources to \emph{prioritise GDAs and make a putative target ranking}. Why am I going to spend time collecting information from diferent databases when \href{http://amp.pharm.mssm.edu/Harmonizome/about}{Harmonizome} \cite{harmonizome2016} has already done it? Have a look at this \href{https://www.youtube.com/watch?v=yGkIQjeWh9U&list=PL0Bwuj8819U8KXTPDSRe59ZPOYizZIpCS}{thread of videos}.
+
+Problem with Harmonizome: loss of information because they binarise the results: e.g. there is no information about the real p-value, just a binary variable obtained with an arbitrary threshold.
+
+\subsection{Complexity of BBD Enrichment or Integration}
+In isolation, the BBD sources described in the previous section can offer researchers powerful insights. Nonetheless, each individual resource has a specific scope and can only shed light on a limited set of scientific questions \cite{brown2018}.  In the early stages of hypothesis generation for drug discovery, data from diverse sources has to be taken into account: biology, chemistry, translational medicine, genetics, proteomics, transcriptomics, protein--protein interaction, etc. \cite{brown2018}.
+
+There is a much greater opportunity to explore and analyse data when different resources are integrated and presented together but there are several central issues \cite{brown2018}:
+\begin{itemize}
+    \item Sourcing of strong evidence linking drug targets to diseases
+    \item Development of shared identifiers and common semantics between databases and literature \cite{brown2018}. The literature is filled with alternative, idiosyncratic, and arbitrary gene names and gene symbols, as well as a continuum of phenotypic descriptions, making cross--comparison and meta--analysis difficult \cite{gad2004}.
+    \item Assembling, overlaying, integration, and comparison of data from many sources
+    \item Building evidence--based, confident, and viable hypothesis for a new drug discovery idea
+\end{itemize}
+
+Early drug discovery is a significant challenge given the complexities in managing entity name space and ontologies, and a general lack of interoperable data standards \cite{brown2018}. The availability and interoperability of open and fully contextualised data sets remains a key issue in the full development and application of big data workflows to early drug discovery hypothesis generation \cite{brown2018}. Nevertheless, there have been several attempts to harmonise genetic and disease information into ontologies.
+
+\subsubsection{Ontologies}
+
+Ontologies are knowledge classifications and have arisen from the need for tools to represent, query, and analyse data and knowledge \cite{haendel2018}. Concretely, in computer science, an ontology is a representation of a shared, common, background knowledge for a community. It is a model of the common entities that need to be understood in order for some group of software systems and their users to function and communicate at the level required for a set of tasks.
+
+Ontologies are not the primarly focus of this project but it will be crucial to understand them and their diversity. For more information about ontologies, please refer to Haendel et a. \cite{haendel2018}, a \href{https://goo.gl/SLVqhi}{short introduction} on the subject available and a blog post by James Malone on  '\href{https://goo.gl/6bHDcv}{What Ontologies are for}'.
+
+\subsubsection{Disease Ontologies}
+The use of ontologies for classifying disease has steadily increased, as evidenced by the increasing number of general and disease-specific ontologies and the citations of specific disease-related ontology resources \cite{haendel2018}. This was evidenced in the Section Previous Research xxxxxxx. Moreover, (i) the rate of increase in articles about ontologies is twice the rate of all articles published \cite{haendel2018}, (ii) there are several competing disease ontologies designed for different purposes, with different limitations, mutually inconsistent, and poorly integrated with each other \cite{DISEASES2015}. Which disease ontology should I use for my project? Which disease ontology is the best? What are the options?
+
+Since the aim of this report is not about comparing the diversity of disease ontologies and there is a peer review article that has done it before, I will just refer to it for more information: Haendel et al. \cite{haendel2018}. Not having neglegted the existance of other sources, I will just justify my choice based on the purpose of my research: \href{https://www.ebi.ac.uk/efo/}{Experimental factor ontology (EFO)} \cite{experimentalFactorOntology2010}
+
+\begin{itemize}
+    \item EFO is the core ontology of Open Targets \cite{koscielny2016}. The usage of the same ontology will allow cross-comparisons between a potential novel algorithm for putative target priorisation and Open Targets ranking \cite{ferrero2017}
+    
+    \item EFO is compatible with most of the publicly available databases at the EBI and EMBL
+    
+    \item EMBL and EBI have started to map several existing ontologies and controlled vocabularies like
+    \href{https://www.ebi.ac.uk/ols/ontologies/ordo}{Orphanet Rare Disease Ontology (ORDO)} \cite{orphanet2012}, \href{http://disease-ontology.org/}{Disease Ontology (DO)} \cite{do2015},
+    \href{https://hpo.jax.org/}{Human Phenotype Ontology (HPO)} \cite{hpo2014},
+    \href{https://meshb.nlm.nih.gov}{Medical Subject Headings (MeSH)}, and \href{https://www.omim.org/}{Online Mendelian Inheritance in Man (OMIM)} \cite{omim2015}
+    to EFO by including non-existent ontology concepts or by cross-referencing external concepts \cite{koscielny2016}
+    
+\end{itemize}
+
+Nevertheless, there is \href{https://goo.gl/TxdHxq}{Monarch Disease Ontology (MONDO)} that it is an attempt to harmonise multiple disease ontologies. Also available \href{http://obofoundry.org/ontology/mondo.html}{here}.
+
+\subsubsection{Gene Ontologies}
+The literature is filled with alternative, idiosyncratic, and arbitrary gene names and gene symbols, as well as a continuum of phenotypic descriptions, making cross--comparison and meta--analysis difficult \cite{gad2004}.
+
+\begin{itemize}
+    \item HUGO Gene Nomenclature Committee (HGNC)
+    \item Panther
+    \item NCBI official full name
+    \item UniProt identifier
+\end{itemize}
+
+\subsection{Limited BBD}
+Scarcity of or partial data collection given the cost of the design, set up, and run of experiments. There is an \textbf{introspective approach} towards data generation that discriminates areas of knowledge that have not yet been demonstrated to be of interest \cite{brown2018}.
+
+There is a specific type of observational bias also known as the \emph{streetlight effect} \cite{dunham2019} where \emph{the richer get richer} \cite{stoeger2018}. Scientific research has been demonstrated to search for something where it is easiest to look \cite{stoeger2018}. In the era of high-thoughput technologies, after the completion of the human genome sequence, with over 20,000 protein coding genes, how is it possible that there is a significant imbalance on the study of fashionable versus non-well studied genes \cite{stoeger2018}?
+
+According to Stoeger and colleages \cite{stoeger2018}, this consistent imbalance over time could be for a number of reasons:
+\begin{itemize}
+    \item A sustained ease to experimentally study certain genes
+    \item An increased fraction of scientists that exclusively work on human genes and not on orthologs
+    \item Availability of reagents
+    \item Technological limitations
+    \item Career prospects for junior researchers
+    \item Current medical relevance
+    \item A slow transition between large- and small-scale studies
+    \item A shortage of large-scale studies that attribute function through perturbing genes and monitoring altered physiology rather than through guilt by association
+    \item Complex social or economic factors affecting research priorities
+\end{itemize}
+
+Stoeger and colleagues \cite{stoeger2018} set out to unpick these relationships by assembling a set of 430 computed or experimentally determined gene properties and then constructing models that predict the number of publications and the date of first publication for each of the approximately 13,000 human genes for which they had full data. Using a machine-learning technique (gradient boosting regressions with out-of-sample Monte Carlo cross-validation), they could predict the number of publications per gene with and the allocation of National Institutes of Health (NIH) funding grants for human gene research and the existence of approved and preclinical drugs with reasonable accuracy \cite{stoeger2018}. Just 15 of the gene features dominated the model’s accuracy, representing:
+\begin{itemize}
+    \item Aspects of RNA and protein abundance
+    \item transcript and gene length
+    \item Protein sequence factors (e.g. presence of a signal sequence)
+    \item sensitivity of the gene to natural or gene-edited mutations
+\end{itemize}
+
+Overall research activity on each human gene as judged by the total number of publications is substantially influenced by properties of genes that affect their tractability by multiple experimental methods, we are still looking under the street light \cite{stoeger2018}. We need to escape our attention biases with supplementary information that can guide us toward promising but neglected genes that already have suitable data \cite{dunham2019}.
+
+\subsection{Biased BBD}
+A phrase often associated with any data processing activity is \emph{garbage in, garbage out}. This encapsulates the qualitative nature of this attribute, which focuses on the truthfulness and accuracy of the data being processed \cite{brown2018}.
+
+Data skewed towards \textbf{positive results}. \textbf{Negative data} is less valued and marginalised, known to be deliberately avoided from publication, and it got worse over time: the frequency of positive data in papers increasing by over 22\% between 1990 and 2007, thereby reducing the ratio positive--negative data reported  \cite{brown2018}. \emph{New Negatives in Plant Science} from Elsevier and \emph{Journal of Negative Results in Biomedicine} from Springer were an attempt to support the publication of negative results  \cite{brown2018}. But... what is the current ratio??? This skewness results in publication bias favouring positive and well studied associations \cite{brown2018}.
+
+As an example, the top-20 scoring GDAs from DisGeNET were
+very well-studied GDAs, like Alzheimer Disease and APP [amyloid beta (A4) precursor protein], obesity and MC4R (melanocortin 4 receptor), and Type 2 Diabetes Mellitus and IRS1 (insulin receptor substrate 1) \cite{DisGeNET2015}. These genes do not represent hot, putative targets since they have been studied for long periods of time and there is already an active research on them. There should be a normalisation to inflate the weights of non-so-well-studied genes.

@@ -1,0 +1,100 @@
+\documentclass[a4paper]{article}
+\title{iCASE PhD report}
+\author{David Narganes}
+\date{\today}
+
+
+\usepackage{mathtools}          % mathematics notation
+\usepackage{graphicx}           % manipulation of images
+\usepackage{booktabs}           % tables
+\usepackage{multicol}           % multiple columns
+\usepackage{float}              % pictures in place
+\usepackage{hyperref}
+\usepackage{amssymb}
+\usepackage{listings}
+\usepackage{array}
+\usepackage[a4paper,bindingoffset=0.2in,%
+            left=0.8in,
+            right=0.8in,
+            top=0.8in,
+            bottom=0.8in,
+            footskip=.25in]{geometry}
+
+\hypersetup{
+    colorlinks=true,
+    citecolor=red,
+    linkcolor=blue,
+    urlcolor=blue,
+}
+
+\usepackage{color}
+\definecolor{codegreen}{rgb}{0,0.9,0}
+\definecolor{codegray}{rgb}{0.4,0.4,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.97}
+ 
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{red},
+    stringstyle=\color{codepurple},
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+\lstset{style=mystyle}
+
+% Defining native folder for pics
+\graphicspath{ {./pics/} }
+
+% Length of indentation for the document
+\setlength{\parindent}{1cm}
+\setlength{\parskip}{0em}
+
+% Shade quotes
+\usepackage{framed}
+\usepackage{color}
+\newenvironment{shadequote}%
+{\begin{snugshade}\begin{quote}}
+{\hfill\end{quote}\end{snugshade}}
+\definecolor{shadecolor}{rgb}{0.9,0.9,0.9}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+
+% Introduction
+\section{Introduction}
+\input{10_intro.tex}
+\newpage
+
+% Related work
+\section{Related work}
+\input{20_related_work.tex}
+\newpage
+
+% Target datasources
+\section{Target data sources}
+\input{30_targets.tex}
+\newpage
+
+% Ideas project
+\section{Ideas for the project}
+\input{40_ideas.tex}
+\newpage
+
+% Challenges BBD
+\section{Challenges of Big Biological Data (BBD)}
+\input{50_challenges_BBD.tex}
+
+\bibliographystyle{plain}
+\bibliography{refs}
+
+\end{document}

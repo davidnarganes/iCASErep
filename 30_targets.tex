@@ -1,0 +1,41 @@
+What is the degree of overlap between different target databases (see Table \ref{tab:target_db_stats})?
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c|c|c|c}
+         Data source & Publication & Human Ensembl & Not mapped \\
+         \hline
+         
+         \href{https://goo.gl/VD1dTm}{TTD} &
+         \cite{ttd2018} & 2415 & \href{https://goo.gl/pvWxHf}{Link}
+         \\
+         
+         \href{https://goo.gl/Lrsyde}{DrugBank} &
+         \cite{drugbank2008} & 2760 & \href{https://goo.gl/cYYa3F}{Link} \\
+         
+         \href{https://goo.gl/BY8yw8}{STITCH} &
+         \cite{stitch42014} & &
+         \\
+         
+         \href{https://goo.gl/mXCn7a}{PharmaGKB} &
+         \cite{pharmaGSK2012} & &
+         \\
+         
+         \href{https://goo.gl/uUPmwo}{SuperTarget} & \cite{superTarget2012} & &
+         
+    \end{tabular}
+    \caption{Caption \label{tab:target_db_stats}}
+\end{table}
+
+Attention should be paid to these databases and GDAs. For example, \texttt{VariantLocation-Disease} from PharmaGKB refer to variants that have ``Disease'' anotation tags. These associations can be misleading because they are not necessarily direct GDAs: the annotation for rs5275 in PTGS2:
+
+\begin{center}
+    \emph{Genotype AA is associated with increased progression-free survival and overall survival when treated with capecitabine and oxaliplatin in people with Colorectal Neoplasms as compared to genotypes GG + AG}.
+\end{center}
+
+rs5275 will be listed in the relationships file as “associated” with “Colorectal Neoplasms”, but the SNP is associated with the treatment outcome for Capecitabine and Oxaliplatin in case patients.
+
+The extracted genes from PharmaGKB: filter GENES, filter CHEMICALS, detect unique GENES.
+
+ 
+ 
